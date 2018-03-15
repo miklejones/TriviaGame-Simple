@@ -1,0 +1,17 @@
+header {
+    font-size: 36px;
+    color: limegreen;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.start {
+    height: 50px;
+    width: 200px;
+    background-color: pink;
+    font-size: 20px;
+    font-weight: 700;
+    margin: auto;
+    margin-top: 200px;
+    line-height: 50px;
+}
