@@ -8,24 +8,32 @@ var counter = 30;
 
 var triviaQuestions = [{
   question: 'What color is Ms.Lippys Car?',
-  answerList: ['red', 'blue', 'white', 'green'],
-  answerIndex: 'D. green'
+  answerList: ['Red', 'Blue', 'White', 'Green'],
+  answerIndex: 'D. Green',
+  pic: 'assets/images/ms-lippy.gif'
 }, {
   question: 'Who rules?',
-  answerList: ['McGuire', 'O-Doyle', 'King', 'Billy'],
-  answerIndex: 'B. O-Doyle'
+  answerList: ['McGuire', "O'Doyle", 'King', 'Billy'],
+  answerIndex: "B. O'Doyle",
+  pic: 'assets/images/odoyle-rules.gif'
+
 }, {
-  question: 'What is the questions?',
-  answerList: ['a', 'b', 'c', 'd'],
-  answerIndex: 1
+  question: 'Clorophyll? More like...',
+  answerList: ['Doraville', 'Snorophyll', 'Borophyll', 'Chlorophyllum Molybdites'],
+  answerIndex: 'C. Borophyll',
+  pic: 'assets/images/borophyll.gif'
+
 }, {
-  question: 'What is the questions?',
-  answerList: ['a', 'b', 'c', 'd'],
-  answerIndex: 1
+  question: "You ain't cool unless you what?",
+  answerList: ['Graduate school', 'Catch the penguin', 'Pee your pants', 'Date your teacher'],
+  answerIndex: 'C. Pee your pants',
+  pic: 'assets/images/miles-davis.gif'
+
 }, {
-  question: 'What is the questions?',
-  answerList: ['a', 'b', 'c', 'd'],
-  answerIndex: 1
+  question: 'What did Ed call the shit?',
+  answerList: ['Turd', 'Crap', 'Doo doo', 'Poop'],
+  answerIndex: 'D. Poop',
+  pic: 'assets/images/shit-poop.gif'
 }];
 
 $(document).ready(function () {
@@ -38,7 +46,7 @@ $(document).ready(function () {
   startScreen();
 
   //Timer function
-  function {
+  function timer() {
     theClock = setInterval(timerCount, 1000);
     function timerCount() {
       if (counter < 1) {
@@ -48,13 +56,13 @@ $(document).ready(function () {
       if (counter > 0) {
         counter--;
       }
-      $(".html(counter);
+      $(".timer").html(counter);
     }
   }
 
   //Show question and answers function
   function showQuestions() {
-    $('.main-content').html("<p class='text-center'>Time Remaining: <span class=30</span></p> <p class='text-center'>" + triviaQuestions[questionCounter].question + "</p> <p class='answer'>A. " + triviaQuestions[questionCounter].answerList[0] + "</p><p class='answer'>B. " + triviaQuestions[questionCounter].answerList[1] + "</p><p class='answer'>C. " + triviaQuestions[questionCounter].answerList[2] + "</p><p class='answer'>D. " + triviaQuestions[questionCounter].answerList[3] + "</p>");
+    $('.main-content').html("<p class='text-center'>Time Remaining: <span class='timer'>30</span></p> <p class='text-center'>" + triviaQuestions[questionCounter].question + "</p> <p class='answer'>A. " + triviaQuestions[questionCounter].answerList[0] + "</p><p class='answer'>B. " + triviaQuestions[questionCounter].answerList[1] + "</p><p class='answer'>C. " + triviaQuestions[questionCounter].answerList[2] + "</p><p class='answer'>D. " + triviaQuestions[questionCounter].answerList[3] + "</p>");
   };
 
   //What to do after each round
@@ -63,7 +71,7 @@ $(document).ready(function () {
       questionCounter++;
       showQuestions();
       counter = 30;
-    ;
+      timer();
     }
     else {
       generateFinalScreen();
@@ -73,41 +81,38 @@ $(document).ready(function () {
   //Win when correct answer is clicked
   function generateWin() {
     questionsCorrect++;
-    $(".main-content").html("<p class='text-center'>Time Remaining: <span class=" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + triviaQuestions[questionCounter].answerIndex + "</p>");
-    setTimeout(next, 4000);  //  change to 4000 or other amount
+    $(".main-content").html("<p class='text-center '>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + triviaQuestions[questionCounter].answerIndex + "</p>"+'<img src="' + triviaQuestions[questionCounter].pic + '" class="text-center answer-gifs" alt="">' );
+    setTimeout(next, 6000);  //  change to 4000 or other amount
   }
 
   function generateLoss() {
     questionsWrong++;
-    $(".main-content").html("<p class='text-center'>Time Remaining: <span class=" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: " + triviaQuestions[questionCounter].answerIndex + "</p>");
+    $(".main-content").html("<p class='text-center '>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: " + triviaQuestions[questionCounter].answerIndex + "</p>");
     setTimeout(next, 4000); //  change to 4000 or other amount
   }
-
 
   //Loss when clock times out
   function generateLossDueToTimeOut() {
     unansweredQuestions++;
-    $(".main-content").html("<p class='text-center'>Time Remaining: <span class=" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + questionsCorrect[questionCounter] + "</p>");
+    $(".main-content").html("<p class='text-center '>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + questionsCorrect[questionCounter] + "</p>");
     setTimeout(next, 4000);  //  change to 4000 or other amount
   };
 
   function generateFinalScreen() {
-    $(".main-content").html("<p class='text-center'>Time Remaining: <span class=" + counter + "</span></p>" + "<p class='text-center'>All done, here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + questionsCorrect + "</p>" + "<p>Wrong Answers: " + questionsWrong + "</p>" + "<p>Unanswered: " + unansweredQuestions + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>");
+    $(".main-content").html("<p class='text-center '>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Did you graduate this time?!" + "</p>" + "<p class='summary-correct text-center'>Correct Answers: " + questionsCorrect + "</p>" + "<p class='text-center'>Wrong Answers: " + questionsWrong + "</p>" + "<p class='text-center'>Unanswered: " + unansweredQuestions + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-block reset-button btn-fin' href='#' role='button'>Reset The Quiz!</a></p>");
   }
 
   //On start button click display questions
   $('.start').click(function () {
     $('.start').hide();
     showQuestions();
-  ;
+    timer();
   });
 
 
   //When clicking answer either right or wrong
   $("body").on("click", ".answer", function (event) {
     selectedAnswer = $(this).text();
-    console.log(selectedAnswer);
-
     if (selectedAnswer === triviaQuestions[questionCounter].answerIndex) {
       clearInterval(theClock);
       generateWin();
@@ -118,4 +123,17 @@ $(document).ready(function () {
     }
   });
 
+  $("body").on("click", ".reset-button", function (event) {
+		resetGame();
+	});
+
+  function resetGame() {
+    questionCounter = 0;
+    questionsCorrect = 0;
+    questionsWrong = 0;
+    unansweredQuestions = 0;
+    counter = 30;
+    showQuestions();
+    timer();
+  }
 });
