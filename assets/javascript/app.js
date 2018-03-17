@@ -94,7 +94,7 @@ $(document).ready(function () {
   //Loss when clock times out
   function generateLossDueToTimeOut() {
     unansweredQuestions++;
-    $(".main-content").html("<p class='text-center '>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + questionsCorrect[questionCounter] + "</p>");
+    $(".main-content").html("<p class='text-center '>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + triviaQuestions[questionCounter].answerIndex + "</p>");
     setTimeout(next, 4000);  //  change to 4000 or other amount
   };
 
