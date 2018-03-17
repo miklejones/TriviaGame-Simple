@@ -16,8 +16,7 @@ header {
 }
 
 body {
-    /* background-image: url('../images/billy-madison-bg.jpg'); */
-    margin: 200px auto;
+    margin: 100px auto;
     width: 500px;
     height: 500px;
     border: 5px solid black;
