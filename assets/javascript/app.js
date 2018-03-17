@@ -74,7 +74,7 @@ $(document).ready(function () {
       timer();
     }
     else {
-      generateFinalScreen();
+      generateFinalScreen();NB
     }
   }
 
